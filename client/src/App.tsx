@@ -1,13 +1,14 @@
 import * as React from "react"
 import ReactDOM from "react-dom"
+import Info from "./Info"
 
 const App: React.FunctionComponent = () => {
-  return (
-    <div>
-      <h1>Andrew Williams</h1>
-      <p>Email: retiredpirate42@gmail.com</p>
-    </div>
-  )
+  return <Info />
 }
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+)
