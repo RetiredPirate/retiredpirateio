@@ -1,9 +1,9 @@
 import * as React from "react"
 import ReactDOM from "react-dom"
-import Info from "./Info"
+import Root from "./Root"
 
 const App: React.FunctionComponent = () => {
-  return <Info />
+  return <Root />
 }
 
 ReactDOM.render(
