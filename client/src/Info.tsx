@@ -12,14 +12,20 @@ const Container = styled.div`
 const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 3rem;
   position: fixed;
   width: 150px;
 `
 
 const NavLink = styled(Link)`
+  padding: 10px;
+
   &.active {
     font-weight: bold;
-    color: red;
+
+    ::before {
+      content: ">  ";
+    }
   }
 `
 
@@ -29,14 +35,18 @@ const Content = styled.div`
   margin-left: 150px;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 0 2rem;
   background-color: lightgray;
   align-items: center;
-  font-family: "Arial";
+  padding-bottom: 10rem;
 `
 
 const Name = styled.h1`
   font-size: 50px;
+`
+
+const Section = styled(Element)`
+  padding: 2rem;
 `
 
 const Info: FunctionComponent<RouteComponentProps> = (
@@ -44,43 +54,45 @@ const Info: FunctionComponent<RouteComponentProps> = (
 ) => {
   useEffect(() => {
     scrollSpy.update()
-  })
+  }, [scrollSpy])
+
+  const tabs = [
+    { id: "me", label: "It's Me!" },
+    { id: "education", label: "Learning!" },
+    { id: "job", label: "Career!" },
+    { id: "skills", label: "Skillz!" }
+  ]
 
   return (
     <Container>
-      <Sidebar id="sidebar">
-        <NavLink
-          to="education"
-          activeClass="active"
-          smooth={true}
-          duration={500}
-          spy={true}
-        >
-          Education
-        </NavLink>
-        <NavLink
-          to="job"
-          activeClass="active"
-          smooth={true}
-          duration={500}
-          spy={true}
-        >
-          Job Experience
-        </NavLink>
+      <Sidebar>
+        {tabs.map(tab => (
+          <NavLink
+            to={tab.id}
+            activeClass="active"
+            smooth={true}
+            duration={500}
+            spy={true}
+          >
+            {tab.label}
+          </NavLink>
+        ))}
       </Sidebar>
       <Content>
-        <Name>Andrew Williams</Name>
-        <a href="mailto:retiredpirate42@gmail.com">Email</a>
-        <a href="https://github.com/SuperStuffman">GitHub</a>
-        <a href="https://www.linkedin.com/in/real-person-andrew-williams/">
-          LinkedIn
-        </a>
-        <p>Andrew M. Williams Portland OR, 97214 619-206-8423</p>
-        <p>
-          RetiredPirate42@gmail.com GitHub: https://github.com/SuperStuffman
-        </p>
-        <p>https://www.linkedin.com/in/real-person-andrew-williams/</p>
-        <Element id="education">
+        <Section id="me">
+          <Name>Andrew Williams</Name>
+          <a href="mailto:retiredpirate42@gmail.com">Email</a>
+          <a href="https://github.com/SuperStuffman">GitHub</a>
+          <a href="https://www.linkedin.com/in/real-person-andrew-williams/">
+            LinkedIn
+          </a>
+          <p>Andrew M. Williams Portland OR, 97214 619-206-8423</p>
+          <p>
+            RetiredPirate42@gmail.com GitHub: https://github.com/SuperStuffman
+          </p>
+          <p>https://www.linkedin.com/in/real-person-andrew-williams/</p>
+        </Section>
+        <Section id="education">
           <h3>EDUCATION</h3>
           <p>
             University of Portland, Portland OR Aug. 2014 — May 2018 Bachelor of
@@ -93,8 +105,8 @@ const Info: FunctionComponent<RouteComponentProps> = (
             Saint Augustine High School, San Diego CA Aug. 2010 — May 2014 GPA:
             3.96, Graduated Summa Cum Laude
           </p>
-        </Element>
-        <Element id="job">
+        </Section>
+        <Section id="job">
           <h3>RELATED EXPERIENCE</h3>
           <p>
             Software Development Engineer Viewpoint Construction Software Jun.
@@ -127,17 +139,19 @@ const Info: FunctionComponent<RouteComponentProps> = (
             wallet. Enabled clients and law enforcement to search an address and
             gather new information about its owner.
           </p>
-        </Element>
-        <h3>TECHNICAL SKILLS</h3>
-        <p>
-          Languages: Javascript/Typescript, HTML, CSS/Sass, Java, C/C++, C#,
-          Powershell, Bash, SqlServer, Python
-        </p>
-        <p>Frameworks: Angular2+, React, .NET Core </p>
-        <p>
-          Experience With: F#/Haskell, GraphQL, MongoDB, Node.js, Apollo
-          (GraphQL)
-        </p>
+        </Section>
+        <Section id="skills">
+          <h3>TECHNICAL SKILLS</h3>
+          <p>
+            Languages: Javascript/Typescript, HTML, CSS/Sass, Java, C/C++, C#,
+            Powershell, Bash, SqlServer, Python
+          </p>
+          <p>Frameworks: Angular2+, React, .NET Core </p>
+          <p>
+            Experience With: F#/Haskell, GraphQL, MongoDB, Node.js, Apollo
+            (GraphQL)
+          </p>
+        </Section>
       </Content>
     </Container>
   )
