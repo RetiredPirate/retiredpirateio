@@ -7,7 +7,6 @@ import Tabs from "./Tabs"
 const Root: React.FunctionComponent = () => {
   return (
     <div>
-      <Tabs />
       <Router>
         <Home path="/"></Home>
         <Info path="info"></Info>
